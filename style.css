@@ -1,0 +1,20 @@
+* {
+    font-family: "Roboto", sans-serif;
+}
+
+#Minutes {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  font-size: 2rem;
+} 
+
+#MinuteTime {
+    width: 18rem;
+    height: 4rem;
+    margin-top: 2rem;
+    font-size: 2rem;
+}
