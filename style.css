@@ -2,19 +2,36 @@
     font-family: "Roboto", sans-serif;
 }
 
+input[type=number] {
+  -moz-appearance:textfield;
+  font-size: 25px; 
+}
+
 #Minutes {
   display: flex;
-  flex-direction: column; /* Stack items vertically */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   min-height: 100vh;
   font-size: 2rem;
-} 
+}
 
-#MinuteTime {
-    width: 18rem;
-    height: 4rem;
-    margin-top: 2rem;
-    font-size: 2rem;
+.inputs {
+  margin-top: 2rem;
+}
+
+#timeInput {
+  width: 15rem;
+  height: 4rem;
+}
+
+#startBtn {
+  margin-left: 1rem;
+}
+
+#intervalSet {
+  margin-top: 1.5rem;
+  color: rgb(7, 129, 7);
+  font-size: 18px;
 }
