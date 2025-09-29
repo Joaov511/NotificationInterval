@@ -19,17 +19,33 @@ input[type=number] {
   font-size: 2rem;
 }
 
-.inputs {
+.time-input-group {
   margin-top: 2rem;
 }
 
-#timeInput {
-  width: 15rem;
+#i1{
+  display: flex;
+  flex-direction: column;
+}
+
+#i1 input {
+  width: 22rem;
   height: 4rem;
+  margin-bottom: 2rem;
+  border: 1.5px solid;
+  border-radius: 10px;
+  outline: none;
+}
+
+#i2 {
+  display: flex;
+  flex-direction: row;
 }
 
 #startBtn {
-  margin-left: 1rem;
+  margin-left: 1rem; 
+  width: 7rem;
+  height: 4rem;
 }
 
 #intervalSet {
