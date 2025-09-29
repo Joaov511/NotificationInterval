@@ -18,7 +18,9 @@ function activateNotifications(intervalTime) {
     sendNotification(notificationText);
     intervalSetWarning.textContent = `Interval set for each ${intervalTime} minute(s)`;
     cancelButtonStyle(startBtn);
+    labelInput.readOnly = true;
     minuteInput.readOnly = true;
+    labelInput.style.backgroundColor = lockedInputColor;
     minuteInput.style.backgroundColor = lockedInputColor;
 }
 
@@ -26,10 +28,17 @@ function cancelNotifications() {
     closePreviousNotification();
     intervalSetWarning.textContent = "";
     startButtonStyle(startBtn);
+    labelInput.readOnly = false;
     minuteInput.readOnly = false;
+    labelInput.style.backgroundColor = standardInputColor;
     minuteInput.style.backgroundColor = standardInputColor;
 }
 
+minuteInput.addEventListener("keypress", (e) => {
+    if (isNaN(e.key)) {
+        e.preventDefault();
+    }
+});
 
 startBtn.addEventListener("click", () => {
     let intervalTime = Number(minuteInput.value);

@@ -37,6 +37,10 @@ input[type=number] {
   outline: none;
 }
 
+#i1 input::placeholder {
+  font-size: 25px;
+}
+
 #i2 {
   display: flex;
   flex-direction: row;
