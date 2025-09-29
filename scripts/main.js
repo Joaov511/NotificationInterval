@@ -1,31 +1,33 @@
 import { sendNotification, closePreviousNotification } from "./notifications.js";
+import { startButtonStyle, cancelButtonStyle } from "./startButton.js";
+
 const timeInput = document.getElementById("timeInput");
 const startBtn = document.getElementById("startBtn");
 const intervalSetWarning = document.getElementById("intervalSet");
+
 const minute = 1000*60;
 let isNotificationsActive = false;
 let notificationText = "Feche os chamados";
-const standardInputcolor = "white";
-const lockedInputcolor = "rgba(204, 206, 209, 1)";
+const standardInputColor = "white";
+const lockedInputColor = "rgba(204, 206, 209, 1)";
 let activeInterval;
 
 function activateNotifications(intervalTime) {
     sendNotification(notificationText);
-    startBtn.className = "btn btn-danger";
-    startBtn.textContent = "Cancel";
-    timeInput.readOnly = true;
-    timeInput.style.backgroundColor = lockedInputcolor;
     intervalSetWarning.textContent = `Interval set for each ${intervalTime} minutes`;
+    cancelButtonStyle(startBtn);
+    timeInput.readOnly = true;
+    timeInput.style.backgroundColor = lockedInputColor;
 }
 
 function cancelNotifications() {
     closePreviousNotification();
-    startBtn.className = "btn btn-success btn-lg";
-    startBtn.textContent = "Start";
-    timeInput.readOnly = false;
-    timeInput.style.backgroundColor = standardInputcolor;
     intervalSetWarning.textContent = "";
+    startButtonStyle(startBtn);
+    timeInput.readOnly = false;
+    timeInput.style.backgroundColor = standardInputColor;
 }
+
 
 startBtn.addEventListener("click", () => {
     let intervalTime = Number(timeInput.value);
