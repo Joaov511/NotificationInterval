@@ -1,17 +1,16 @@
+import { sendNotification, closePreviousNotification } from "./notifications.js";
 const timeInput = document.getElementById("timeInput");
 const startBtn = document.getElementById("startBtn");
 const intervalSetWarning = document.getElementById("intervalSet");
-
 const minute = 1000*60;
 let isNotificationsActive = false;
-let notification;
 let notificationText = "Feche os chamados";
 const standardInputcolor = "white";
 const lockedInputcolor = "rgba(204, 206, 209, 1)";
 let activeInterval;
 
 function activateNotifications(intervalTime) {
-    sendNotification();
+    sendNotification(notificationText);
     startBtn.className = "btn btn-danger";
     startBtn.textContent = "Cancel";
     timeInput.readOnly = true;
@@ -20,7 +19,7 @@ function activateNotifications(intervalTime) {
 }
 
 function cancelNotifications() {
-    closePreviousNotification(notification);
+    closePreviousNotification();
     startBtn.className = "btn btn-success btn-lg";
     startBtn.textContent = "Start";
     timeInput.readOnly = false;
@@ -28,30 +27,13 @@ function cancelNotifications() {
     intervalSetWarning.textContent = "";
 }
 
-function sendNotification() {
-    closePreviousNotification(notification);
-    if(Notification.permission == "granted") {
-        notification = new Notification(notificationText);
-    } else if(Notification.permission !== "denied") {
-        Notification.requestPermission().then((permission) => {
-            if(permission == "granted") {
-                notification = new Notification(notificationText);
-            }
-        });
-    }
-}
-
-function closePreviousNotification(notification){
-    if(notification) {
-        notification.close();
-    }
-}
-
 startBtn.addEventListener("click", () => {
     let intervalTime = Number(timeInput.value);
     if(!isNotificationsActive) {
         activateNotifications(intervalTime);
-        activeInterval = setInterval(sendNotification, minute*intervalTime);
+        activeInterval = setInterval(() => {
+            sendNotification(notificationText);
+        }, minute*intervalTime);
         isNotificationsActive = true;
     }
     else {
@@ -62,7 +44,7 @@ startBtn.addEventListener("click", () => {
 });
 
 window.addEventListener("beforeunload", () => {
-    closePreviousNotification(notification);
+    closePreviousNotification();
 });
 
 
